@@ -8,7 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './components/header/header.component';
 import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up.component';
 
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends  React.Component {
   constructor() {
@@ -22,8 +22,21 @@ class App extends  React.Component {
   unsuscribeFromAuth = null
 
   componentDidMount() {
-    this.unsuscribeFromAuth = auth.onAuthStateChanged(user =>{
-      this.setState({ currentUser: user })
+    this.unsuscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth)
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser:{
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          })
+          console.log(this.state)
+        })
+      }
+      
     })
   }
 
