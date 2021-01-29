@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-crwnclothing-dev-112839-authRole",
+      "UnauthRoleArn": "arn:aws:iam::909985763304:role/amplify-crwnclothing-dev-112839-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::909985763304:role/amplify-crwnclothing-dev-112839-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-crwnclothing-dev-112839-deployment",
+      "UnauthRoleName": "amplify-crwnclothing-dev-112839-unauthRole",
+      "StackName": "amplify-crwnclothing-dev-112839",
+      "StackId": "arn:aws:cloudformation:us-east-2:909985763304:stack/amplify-crwnclothing-dev-112839/a61c18e0-6196-11eb-a868-0abf5ce4cb0a",
+      "AmplifyAppId": "d2d0pu1fn600ht"
+    },
+    "categories": {
+      "auth": {
+        "crwnclothinge030ce6b": {}
+      }
+    }
+  }
+}

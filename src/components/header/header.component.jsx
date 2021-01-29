@@ -1,37 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import {auth} from '../../firebase/firebase.utils'
 
 import './header.styles.scss'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
-const Header = ({ currentUser }) => (
-    <div className='header'>
+import { useAppContext } from "../../libs/contextLibs";
+
+
+export default function Header() {
+
+    const { isAuthenticated,userHasAuthenticated } = useAppContext();
     
-        <Link className='logo-container' to="/">
-            <Logo className='logo'/>
-        </Link>
+    return (
+        <div className='header'>
         
-        <div className='options' >
-            <Link className='option' to='/shop'>
-                SHOP
+            <Link className='logo-container' to="/">
+                <Logo className='logo'/>
             </Link>
+            
+            <div className='options' >
+                <Link className='option' to='/shop'>
+                    SHOP
+                </Link>
 
-            <Link className='option' to='/contact'>
-                CONTACT
-            </Link>
-            {
-                currentUser ? 
-                (<div className='option' onClick={() => auth.signOut()}> SIGN OUT </div>)
-                :
-                (<Link className='option' to='/signIn'>
-                    SIGN IN
-                </Link>)
-            }
+                <Link className='option' to='/contact'>
+                    CONTACT
+                </Link>
+                {
+                    isAuthenticated ? 
+                    (<div className='option' onClick={() => userHasAuthenticated(false)}> SIGN OUT </div>)
+                    :
+                    (<Link className='option' to='/signIn'>
+                        SIGN IN
+                    </Link>)
+                }
+            </div>
         </div>
-    </div>
-)
-
-export default Header
+    )
+}
